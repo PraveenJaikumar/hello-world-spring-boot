@@ -1,0 +1,21 @@
+[
+  {
+    "name": "myapp",
+    "image": "310643530327.dkr.ecr.us-west-2.amazonaws.com/clxrepx:${image_tag}",
+    "networkMode": "awsvpc",
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/myapp",
+          "awslogs-region": "${aws_region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]
