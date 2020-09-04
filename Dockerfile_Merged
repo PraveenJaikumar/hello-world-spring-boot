@@ -1,0 +1,9 @@
+FROM maven:3.5-jdk-8-alpine as build
+COPY . /app/
+WORKDIR /app
+RUN mvn install
+
+FROM openjdk:8-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/myproject-0.0.1-SNAPSHOT.jar /app/
+ENTRYPOINT ["java","-jar","/app/myproject-0.0.1-SNAPSHOT.jar","Example"]
