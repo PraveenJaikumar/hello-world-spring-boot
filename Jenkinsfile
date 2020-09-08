@@ -1,8 +1,6 @@
 pipeline {
 	agent any
-	tools {
-        	tool name: 'terraform', type: 'terraform'
-        }	
+	
 	stages {
 	stage('Checkout Source') {
 		steps {
@@ -32,13 +30,11 @@ pipeline {
 	    }
 	}
 	
-	stage('Terraform Init'){
-        steps {			
-		        	echo 'Terraform Init.. '
-
-		bat "terraform init"
-		}
-	}	
+	   stage('Terraform Init') {
+      steps {
+        sh "${env.TERRAFORM_HOME}/terraform init"
+      }
+    }
 	
 
 }
